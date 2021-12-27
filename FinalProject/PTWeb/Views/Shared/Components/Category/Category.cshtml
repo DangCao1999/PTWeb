@@ -1,0 +1,16 @@
+﻿@model IEnumerable<PTWeb.Models.Category>
+
+@{
+    ViewData["Title"] = "Category";
+}
+
+<h1>Categories</h1>
+
+<ul class="categories_list">
+
+    @foreach (var item in Model)
+    {
+        <li><a href="#">@item.Name</a></li>
+    }
+</ul>
+
