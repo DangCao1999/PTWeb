@@ -77,22 +77,16 @@
         <div id="sidebar">
             <div class="sidebar_top"></div><div class="sidebar_bottom"></div>
 
-            <div class="sidebar_section">
+                <div class="sidebar_section">
 
-                <h2>Members</h2>
+                    <h2>Members</h2>
 
-                <form action="#" method="get">
-                    <label>Username</label>
-                    <input type="text" value="" name="username" size="10" class="input_field" title="username" />
-                    <label>Password</label>
-                    <input type="password" value="" name="password" class="input_field" title="password" />
-                    <a href="#">Register</a>
-                    <input type="submit" name="login" value="Login" alt="Login" id="submit_btn" title="Login" />
-                </form>
 
-                <div class="cleaner"></div>
+                    @await Component.InvokeAsync("Login")
 
-            </div>
+                    <div class="cleaner"></div>
+
+                </div>
 
             <div class="sidebar_section">
 

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zd84eogXueJwuH1JqhhIJAIarpmQ1m2xDy8e5YhUxUnEdFtZxvR8hYbjurKjAsPoDB9Asfiri5ErtuXBDd+4yg==",
+  "dgSpecHash": "5SbnBYN2ZZHmN2T3eCxRnA3G/GViTKWrsTx5Ezk9Xan4j8MFAidqhhAhFlsz8bFPEzPcYoKiLcqWav3PF7Pbcw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\source\\repos\\PTWeb\\PTWeb\\PTWeb.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\PTWeb\\FinalProject\\PTWeb\\PTWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

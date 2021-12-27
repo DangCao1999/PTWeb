@@ -11,6 +11,6 @@ namespace PTWeb.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
-        public List<Order> Order { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

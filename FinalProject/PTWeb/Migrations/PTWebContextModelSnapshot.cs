@@ -190,13 +190,13 @@ namespace PTWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("PTWeb.Models.Order", b =>
                 {
                     b.HasOne("PTWeb.Models.User", "User")
-                        .WithMany("Order")
+                        .WithMany("Orders")
                         .HasForeignKey("UserId1");
 
                     b.Navigation("User");
@@ -249,7 +249,7 @@ namespace PTWeb.Migrations
 
             modelBuilder.Entity("PTWeb.Models.User", b =>
                 {
-                    b.Navigation("Order");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

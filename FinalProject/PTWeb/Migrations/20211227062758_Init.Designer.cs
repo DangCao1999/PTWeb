@@ -10,8 +10,8 @@ using PTWeb.Models;
 namespace PTWeb.Migrations
 {
     [DbContext(typeof(PTWebContext))]
-    [Migration("20211224050059_WebModel")]
-    partial class WebModel
+    [Migration("20211227062758_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -192,13 +192,13 @@ namespace PTWeb.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("PTWeb.Models.Order", b =>
                 {
                     b.HasOne("PTWeb.Models.User", "User")
-                        .WithMany("Order")
+                        .WithMany("Orders")
                         .HasForeignKey("UserId1");
 
                     b.Navigation("User");
@@ -251,7 +251,7 @@ namespace PTWeb.Migrations
 
             modelBuilder.Entity("PTWeb.Models.User", b =>
                 {
-                    b.Navigation("Order");
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }
