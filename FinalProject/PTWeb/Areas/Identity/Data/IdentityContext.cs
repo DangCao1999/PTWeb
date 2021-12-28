@@ -6,15 +6,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PTWeb.Areas.Identity.Data;
+using PTWeb.Models;
 
 namespace PTWeb.Areas.Identity.Data
 {
-    public class IdentityContext : IdentityDbContext<AppUser>
+    public class IdentityContext : IdentityDbContext
     {
         public IdentityContext(DbContextOptions<IdentityContext> options)
             : base(options)
         {
         }
+        public virtual DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

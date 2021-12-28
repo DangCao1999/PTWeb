@@ -5,3 +5,12 @@
 }
 
 <h1>@ViewData["Title"]</h1>
+
+@{
+    if (Model.StatusMessage != null)
+    {
+        <p>@Model.StatusMessage</p>
+        <a href="/Home">Home</a>
+            
+    }
+}

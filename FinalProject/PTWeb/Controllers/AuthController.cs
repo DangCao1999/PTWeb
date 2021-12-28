@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using PTWeb.Areas.Identity.Data;
+using PTWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,16 +17,16 @@ using System.Threading.Tasks;
 
 namespace PTWeb.Controllers
 {
-    public class RegisterController : Controller
+    public class AuthController : Controller
     {
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterController(
-            UserManager<AppUser> userManager,
-            SignInManager<AppUser> signInManager,
+        public AuthController(
+            UserManager<User> userManager,
+            SignInManager<User> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -34,45 +35,28 @@ namespace PTWeb.Controllers
             _logger = logger;
             _emailSender = emailSender;
         }
-
-        [BindProperty]
-        public InputModel Input { get; set; }
-
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        public class InputModel
-        {
-            [Required]
-            [EmailAddress]
-            [Display(Name = "Email")]
-            public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-            [DataType(DataType.Password)]
-            [Display(Name = "Password")]
-            public string Password { get; set; }
-
-            [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-            public string ConfirmPassword { get; set; }
-        }
+        [Route("~/Auth/Index")]
         public IActionResult Index()
         {
-            return View();
+            return View("~/Views/Register/Index.cshtml");
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        [HttpPost]
+        public async Task<IActionResult> OnRegister(ViewModels.InputRegister input)
         {
-            returnUrl ??= Url.Content("~/");
+            string returnUrl = Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = Input.Email, Email = Input.Email };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var user = new User { UserName = input.Email, Email = input.Email };
+                user.FirstName = input.FirstName;
+                user.LastName = input.LastName;
+                var result = await _userManager.CreateAsync(user, input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
@@ -85,12 +69,13 @@ namespace PTWeb.Controllers
                         values: new { area = "Identity", userId = user.Id, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                    await _emailSender.SendEmailAsync(input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
+                        //return RedirectToPage("Account/RegisterConfirmation", new { email = input.Email, returnUrl = returnUrl });
+                        return RedirectToAction("OnRegisterConFirm", new { email = input.Email });
                     }
                     else
                     {
@@ -105,7 +90,56 @@ namespace PTWeb.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View();
+            return RedirectToAction("Index", input);
+        }
+
+        //[Route("~/Auth/OnRegisterConfirm/{email?}")]
+        public async Task<IActionResult> OnRegisterConFirm(string email, string returnUrl = null)
+        {
+            if (email == null)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with email '{email}'.");
+            }
+
+            // Once you add a real email sender, you should remove this code that lets you confirm the account
+            bool DisplayConfirmAccountLink = true;
+            if (DisplayConfirmAccountLink)
+            {
+                var userId = await _userManager.GetUserIdAsync(user);
+                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                string EmailConfirmationUrl = Url.Action(
+                    "ConfirmEmail", new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl });
+                ViewData["EmailConfirmationUrl"] = EmailConfirmationUrl;
+            }
+
+            return View("~/Views/Register/ConfirmRegister.cshtml");
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return RedirectToPage("/Index");
+            }
+
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Unable to load user with ID '{userId}'.");
+            }
+
+            code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var result = await _userManager.ConfirmEmailAsync(user, code);
+            string StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            ViewData["StatusMessage"] = StatusMessage;
+            return View("~/Views/Register/ConfirmEmail.cshtml");
         }
     }
 }

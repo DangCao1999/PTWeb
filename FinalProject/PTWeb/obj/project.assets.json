@@ -8206,11 +8206,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Desktop\\PTWeb\\FinalProject\\PTWeb\\PTWeb.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\PTWebHoc\\FinalProject\\PTWeb\\PTWeb.csproj",
       "projectName": "PTWeb",
-      "projectPath": "C:\\Users\\PC\\Desktop\\PTWeb\\FinalProject\\PTWeb\\PTWeb.csproj",
+      "projectPath": "C:\\Users\\PC\\Desktop\\PTWebHoc\\FinalProject\\PTWeb\\PTWeb.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Desktop\\PTWeb\\FinalProject\\PTWeb\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\PTWebHoc\\FinalProject\\PTWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",

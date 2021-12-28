@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <StartupObject>PTWeb.Program</StartupObject>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

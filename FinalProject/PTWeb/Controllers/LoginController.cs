@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PTWeb.Areas.Identity.Data;
 using PTWeb.Areas.Identity.Pages.Account;
-using PTWeb.ViewModel;
+using PTWeb.Models;
+using PTWeb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -20,13 +21,13 @@ namespace PTWeb.Controllers
             return View();
         }
 
-        private readonly UserManager<AppUser> _userManager;
-        private readonly SignInManager<AppUser> _signInManager;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginController(SignInManager<AppUser> signInManager,
+        public LoginController(SignInManager<User> signInManager,
             ILogger<LoginModel> logger,
-            UserManager<AppUser> userManager)
+            UserManager<User> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;

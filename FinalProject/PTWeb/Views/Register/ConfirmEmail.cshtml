@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmRegister";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1>ConfirmRegister</h1>
+@{
+    if (ViewData["StatusMessage"] != null)
+    {
+        <p>@ViewData["StatusMessage"]</p>
+        <a href="/Home">Home</a>
+
+    }
+}

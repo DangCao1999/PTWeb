@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PTWeb.Areas.Identity.Data;
+using PTWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace PTWeb.ViewComponents
 {
     public class LoginViewComponent: ViewComponent
     {
-        private readonly SignInManager<AppUser> _signInManager;
-        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
 
-        public LoginViewComponent(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager)
+        public LoginViewComponent(SignInManager<User> signInManager, UserManager<User> userManager)
         {
             this._signInManager = signInManager;
             this._userManager = userManager;

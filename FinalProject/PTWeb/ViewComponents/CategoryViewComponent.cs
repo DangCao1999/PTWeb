@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PTWeb.Areas.Identity.Data;
 using PTWeb.Models;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace PTWeb.ViewComponents
 {
     public class CategoryViewComponent: ViewComponent
     {
-        private readonly PTWebContext _context;
-        public CategoryViewComponent(PTWebContext context)
+        private readonly IdentityDBContext _context;
+        public CategoryViewComponent(IdentityDBContext context)
         {
             _context = context;
         }

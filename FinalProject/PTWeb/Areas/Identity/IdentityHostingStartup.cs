@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PTWeb.Areas.Identity.Data;
+using PTWeb.Models;
 
 [assembly: HostingStartup(typeof(PTWeb.Areas.Identity.IdentityHostingStartup))]
 namespace PTWeb.Areas.Identity
@@ -19,7 +20,7 @@ namespace PTWeb.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("IdentityContextConnection")));
 
-                services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<IdentityContext>();
             });
         }
