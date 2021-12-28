@@ -8,6 +8,8 @@
     <link href="/css/templatemo_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" href="/css/styles.css" />
 
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
     <script language="javascript" type="text/javascript">
         function clearText(field) {
             if (field.defaultValue == field.value) field.value = '';
@@ -193,4 +195,6 @@
 
     </div> <!-- end of footer_wrapper -->
 </body>
+
+@RenderSection("Scripts", required: false)
 </html>

@@ -25,6 +25,7 @@ namespace PTWeb.ViewComponents
         {
             if (_signInManager.IsSignedIn(this.User as ClaimsPrincipal))
             {
+
                 return View("Logined", await _userManager.GetUserAsync(this.User as ClaimsPrincipal));
             }
             return View("SignedOut");
