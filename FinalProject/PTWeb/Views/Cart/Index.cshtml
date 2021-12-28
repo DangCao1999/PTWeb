@@ -1,0 +1,40 @@
+﻿
+<table id="customers">
+    <thead class="thead-dark">
+        <tr>
+            @*<th scope="col">#</th>*@
+            <th scope="col">Name</th>
+            <th scope="col">Image</th>
+            <th scope="col">Price</th>
+            <th scope="col">Promation Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Sub Total</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewData["cart"] != null)
+        {
+            @foreach (var item in (ViewData["cart"] as List<CartItem>))
+            {
+                <tr>
+                    @*<th scope="row">1</th>*@
+                    <td>@item.Product.Name</td>
+                    <td><img src="@item.Product.ImageUrl" width="60" /> </td>
+                    <td>$@item.Product.Price.00</td>
+                    <td>$@item.Product.PromotionPrice.00</td>
+                    <td>
+
+                        <input type="number" value="@item.Quantity" min="1" max="@item.Product.Quantity">
+                    </td>
+                    <td>$@item.Price.00</td>
+                    <td><a asp-controller="ShoppingCart" asp-action="Remove" asp-route-id="@item.Product.Id">Remove</a></td>
+                    <td><a asp-controller="ShoppingCart" asp-action="UpdateCart" asp-route-id="@item.Product.Id">Update</a></td>
+                </tr>
+            }
+        }
+
+
+    </tbody>
+</table>

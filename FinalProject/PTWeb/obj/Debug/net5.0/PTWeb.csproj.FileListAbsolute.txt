@@ -1347,3 +1347,4 @@ C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Reg
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Register\ConfirmEmail.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Register\ConfirmRegister.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Cart\Index.cshtml.g.cs
