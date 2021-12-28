@@ -34,10 +34,10 @@ namespace PTWeb.Controllers
                 return NotFound("Product not exist");
 
             var cart = GetCartDetails();
-            var ordersDetail = cart.Find(p => p.Product.Id == id);
-            if (ordersDetail != null)
+            var cartDetail = cart.Find(p => p.Product.Id == id);
+            if (cartDetail != null)
             {
-                ordersDetail.Quantity++;
+                cartDetail.Quantity++;
             }
             else
             {
@@ -48,6 +48,36 @@ namespace PTWeb.Controllers
             return Ok();
         }
 
+        public IActionResult RemoveItemToCart(int id)
+        {
+            var product = _context.Products.Where(p => p.Id != id).FirstOrDefault();
+            if (product == null) return NotFound("Product not exist");
+            var cart = GetCartDetails();
+            var cartDetail = cart.Find(p => p.Product.Id == id);
+            if(cartDetail != null)
+            {
+                cart.Remove(cartDetail);
+            }
+            else
+            {
+                return NotFound("Product not in your cart");
+            }
+            SaveCartSession(cart);
+            return Ok();
+        }
+
+        [HttpPut]
+        public IActionResult UpdateCart(int id, int Quantity)
+        {
+            var product = _context.Products.Where(p => p.Id != id).FirstOrDefault();
+            if (product == null) return NotFound("Product not exist");
+            var cart = GetCartDetails();
+            var cartDetail = cart.Find(p => p.Product.Id == id);
+            if (cartDetail == null) return NotFound("Product not in your cart");
+            cartDetail.Quantity = Quantity;
+            SaveCartSession(cart);
+            return Ok();
+        }
         //Session
         List<CartItem> GetCartDetails()
         {
