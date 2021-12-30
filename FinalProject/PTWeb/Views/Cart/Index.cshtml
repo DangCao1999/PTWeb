@@ -1,79 +1,144 @@
 ﻿
-<table id="customers">
-    <thead class="thead-dark">
-        <tr>
-            @*<th scope="col">#</th>*@
-            <th scope="col">Name</th>
-            <th scope="col">Image</th>
-            <th scope="col">Price</th>
-            <th scope="col">Promation Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Sub Total</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (ViewData["cart"] != null)
-        {
-            @foreach (var item in (ViewData["cart"] as List<CartItem>))
-            {
-                <tr>
-                    @*<th scope="row">1</th>*@
-                    <td>@item.Product.Name</td>
-                    <td><img src="@item.Product.ImageUrl" width="60" /> </td>
-                    <td>$@item.Product.Price.00</td>
-                    <td>$@item.Product.PromotionPrice.00</td>
-                    <td>
+<div class="content_section">
 
-                        <input id="input-@item.Product.Id" type="number" value="@item.Quantity" min="1" max="@item.Product.Quantity">
-                    </td>
-                    <td>$@item.Price.00</td>
-                    <td><button class="button-remove">Remove</button></td>
-                    <td><button data-id="@item.Product.Id" class="button-update">Update</button></td>
-                </tr>
-            }
+    <h2>Your Products</h2>
+    <table id="customers">
+        <thead class="thead-dark">
+            <tr>
+                @*<th scope="col">#</th>*@
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Price</th>
+                <th scope="col">Promation Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub Total</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+    <div style="display: flex; justify-content: flex-end;">
+        <button onclick="checkOut()">Check out</button>
+    </div>
+
+</div>
+@section Scripts {
+    <script>
+
+
+        // jQuery
+        //------------Get------------------
+        function getCart() {
+            jQuery.ajax({
+                url: "/Cart/GetCart",
+                method: "GET",
+                success: function (rs) {
+                    //console.log(rs);
+                    //console.log(rs);
+
+                    let obj = jQuery.parseJSON(rs);
+                    let tbody = document.getElementById("tbody");
+                    tbody.innerHTML = "";
+                    obj.forEach(e => {
+                        let product = e["Product"];
+                        console.log(product);
+                        let tr = document.createElement("tr");
+                        tr.innerHTML = `<td>${product.Name}</td>
+                                            <td><img src="${product.ImageUrl}" width="60" /> </td>
+                                            <td>${product.Price}.00</td>
+                                            <td>${product.PromotionPrice}.00</td>
+                                            <td>
+
+                                                <input id="input-${product.Id}" type="number" value="${e.Quantity}" min="1" max="${product.Quantity}">
+                                            </td>
+                                            <td>${product.Price}.00</td>
+                                            <td><button class="button-remove" onclick="remove(${product.Id})" data-id="${product.Id}">Remove</button></td>
+                                            <td><button class="button-update" onclick="update(${product.Id})" data-id="${product.Id}">Update</button></td>`;
+                        tbody.appendChild(tr);
+                    })
+                }
+            })
         }
 
+        //-------------Remove--------------
+        function remove(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You want remove it!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    jQuery.ajax({
+                        url: "/Cart/RemoveCartItem/" + id,
+                        method: "DELETE",
+                        success: function () {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            ).then((rs) => {
+                                getCart();
+                            });
+                        },
+                        error: function () {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
 
-    </tbody>
-</table>
-@section Scripts {
-<script>
-    $(document).ready(function () {
-        $(".button-remove").click();
-
-        $(".button-update").click(function (event){
-            event.preventDefault();
-            let id = $(this).data("id");
-            let quantity = $("#input-"+id).val();
-            $.ajax({
-                url: "/Cart/UpdateCart",
+                }
+            })
+        }
+        //--------------Update-------------
+        function update(id) {
+            let quantity = jQuery("#input-" + id).val();
+            jQuery.ajax({
+                url: "/Cart/UpdateCartItem",
                 method: "PUT",
-                data{
+                data: {
                     id: id,
-                    quantity = quantity,
+                    quantity: quantity,
                 },
-                success:function(){
+                success: function () {
                     Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Add new item success',
-                            showConfirmButton: false,
-                            timer: 1500
-                            })
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Update item success',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    getCart();
                 },
-                error: function(){
+                error: function () {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'error',
                         title: 'Update failed',
                         showConfirmButton: false,
                         timer: 1500
-                            })
+                    })
                 }
             })
+
+        }
+
+        //-------------Checkout------------
+        function checkOut() {
+            
+        }
+
+        jQuery(document).ready(function () {
+            getCart();
         });
-    })
-</script>
+    </script>
 }

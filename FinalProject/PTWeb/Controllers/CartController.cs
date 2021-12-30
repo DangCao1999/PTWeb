@@ -5,7 +5,9 @@ using PTWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
+
 
 namespace PTWeb.Controllers
 {
@@ -24,6 +26,16 @@ namespace PTWeb.Controllers
             List<CartItem> cart = GetCartDetails();
             ViewData["cart"] = cart;
             return View();
+        }
+
+
+
+        [HttpGet]
+        public IActionResult GetCart()
+        {
+            List<CartItem> cart = GetCartDetails();
+            var obj = JsonConvert.SerializeObject(cart);
+            return Ok(obj);
         }
 
         [HttpPost]
@@ -48,7 +60,8 @@ namespace PTWeb.Controllers
             return Ok();
         }
 
-        public IActionResult RemoveItemToCart(int id)
+        [HttpDelete]
+        public IActionResult RemoveCartItem(int id)
         {
             var product = _context.Products.Where(p => p.Id != id).FirstOrDefault();
             if (product == null) return NotFound("Product not exist");
@@ -67,7 +80,7 @@ namespace PTWeb.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCart(int id, int Quantity)
+        public IActionResult UpdateCartItem(int id, int Quantity)
         {
             var product = _context.Products.Where(p => p.Id != id).FirstOrDefault();
             if (product == null) return NotFound("Product not exist");
