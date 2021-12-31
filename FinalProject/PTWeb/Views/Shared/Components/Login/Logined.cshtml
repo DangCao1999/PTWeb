@@ -1,7 +1,21 @@
 ﻿@model PTWeb.Models.User
 
 <h1>Hello @Model.Email</h1>
-<div>
-    <a>History</a>
-    <a href="@Url.Action("Index","Cart")">Cart</a>
+<div style="display: flex; justify-content: space-evenly;">
+    <a href="@Url.Action("Index","History")">History</a>
+    <a id="cart_url" href="@Url.Action("Index","Cart")">Cart</a>
 </div>
+<script>
+    function updateNumberCart() {
+        jQuery.ajax({
+            url: "/Cart/GetCartCount",
+            method: "GET",
+            success: function (data) {
+                jQuery("#cart_url").text(`cart (${data})`)
+                //console.log(data);
+            }
+        })
+    }
+
+    updateNumberCart();
+</script>

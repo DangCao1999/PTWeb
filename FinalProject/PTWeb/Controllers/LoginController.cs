@@ -90,12 +90,12 @@ namespace PTWeb.Controllers
                 else
                 {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View();
+                    return LocalRedirect(returnUrl);
                 }
             }
 
             // If we got this far, something failed, redisplay form
-            return View();
+            return LocalRedirect(returnUrl);
         }
     }
 }

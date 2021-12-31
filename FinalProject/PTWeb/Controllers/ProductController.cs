@@ -11,8 +11,8 @@ namespace PTWeb.Controllers
     public class ProductController : Controller
     {
 
-        private readonly IdentityDBContext _context;
-        public ProductController(IdentityDBContext pTWebContext)
+        private readonly PTWebContext _context;
+        public ProductController(PTWebContext pTWebContext)
         {
             this._context = pTWebContext;
         }

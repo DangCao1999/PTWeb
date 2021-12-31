@@ -10,8 +10,8 @@ namespace PTWeb.ViewComponents
 {
     public class CategoryViewComponent: ViewComponent
     {
-        private readonly IdentityDBContext _context;
-        public CategoryViewComponent(IdentityDBContext context)
+        private readonly PTWebContext _context;
+        public CategoryViewComponent(PTWebContext context)
         {
             _context = context;
         }

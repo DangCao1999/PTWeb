@@ -1,22 +1,62 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
-
-    @model Product;
 }
-
+@model Product;
 <h1>@Model.Name</h1>
 <div style="display: flex;">
-    <div>
+    <div style="margin-right: 20px;">
         <img src="@Model.ImageUrl" alt="product 2" />
     </div>
-    <div>
-        <p class="price">Price: $350</p>
-        <p class="price">Price: $350</p>
-
+    <div style="display: flex; flex-direction: column; justify-content: space-between;">
+        <p class="price">Price: @Model.Price</p>
+        <p class="price">Promotion Price: @Model.PromotionPrice</p>
+        <div>
+            <input id="input-@Model.Id" type="number" value="1" min="1" max="@Model.Quantity"> <button id="btn-add-cart">Add to cart</button>
+        </div>
+        <div>
+            @Model.Description
+        </div>
     </div>
 </div>
 
+@section Scripts {
+    <script>
 
+
+        jQuery(document).ready(function () {
+            jQuery("#btn-add-cart").click(function () {
+                            console.log( jQuery("#input-@Model.Id").val());
+                            jQuery.ajax({
+                                method: "POST",
+                                url: "/Cart/AddToCart",
+                                data: {
+                                    id: @Model.Id,
+                                    quantity: jQuery("#input-@Model.Id").val()
+                                },
+                                success: function (data) {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'success',
+                                        title: 'Add new item success',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    });
+                                    updateNumberCart();
+                                },
+                                error: function () {
+                                    Swal.fire({
+                                        position: 'top-end',
+                                        icon: 'error',
+                                        title: 'Add new item failed',
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+                                }
+                            })
+                        })
+                    });
+    </script>
+}
 
 

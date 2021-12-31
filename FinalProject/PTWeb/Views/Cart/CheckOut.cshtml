@@ -1,0 +1,116 @@
+﻿
+@model Order
+
+<div class="content_section">
+
+    <h2>Your Order</h2>
+    <table id="customers">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.OrderDetails.Count > 0)
+            {
+                @foreach (var orderDetail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@orderDetail.Product.Name</td>
+                        <td><img src="@orderDetail.Product.ImageUrl" width="60" /></td>
+                        <td style="text-align:center;">@orderDetail.Quantity</td>
+                        <td>@orderDetail.Price</td>
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td colspan="2"><h3 style="text-align: right;">Total money:</h3></td>
+                <td></td>
+                <td><b>@Model.Total</b></td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <hr />
+    <h3>
+        Your Contact Info
+    </h3>
+    <h4>
+        Phone Number:
+    </h4>
+    <p>
+        @Model.Phone
+    </p>
+    <h4>
+        Address:
+    </h4>
+    <p>
+        @Model.ShipAddress
+    </p>
+    <div style="display: flex; justify-content: flex-end;">
+        <button onclick="Pay(@Model.OrderDetails.Count)">Pay</button>
+    </div>
+
+</div>
+
+@section Scripts{
+
+    <script>
+        function Pay(number) {
+            console.log(number);
+            if (number > 0) {
+                console.log(number);
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You want buy all!",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#28a745',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Buy All',
+                    reverseButtons: true
+                }).then((rs) => {
+                    if (rs.isConfirmed) {
+                        jQuery.ajax({
+                            url: '/Cart/Pay',
+                            method: 'POST',
+                            success: function () {
+                                Swal.fire(
+                                    {
+                                        title: 'Buy Successful!',
+                                        icon: 'success'
+                                    }).then(() => {
+                                        window.location.href = "/Home/Index"
+                                    });
+                            },
+                            error: function () {
+                                Swal.fire(
+                                    {
+                                        title: 'Some thing went wrong!',
+                                        icon: 'error'
+                                    })
+                            }
+                        })
+                    }
+
+                })
+            }
+            else {
+                Swal.fire(
+                    {
+                        title: 'Your cart is empty!',
+                        icon: 'error'
+                    }
+                )
+            }
+        }
+
+    </script>
+
+
+}

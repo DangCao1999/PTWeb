@@ -12,9 +12,9 @@ namespace PTWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IdentityDBContext _context;
+        private readonly PTWebContext _context;
 
-        public HomeController(ILogger<HomeController> logger, IdentityDBContext pTWebContext)
+        public HomeController(ILogger<HomeController> logger, PTWebContext pTWebContext)
         {
             _logger = logger;
             this._context = pTWebContext;        

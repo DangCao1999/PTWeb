@@ -56,6 +56,8 @@ namespace PTWeb.Controllers
                 var user = new User { UserName = input.Email, Email = input.Email };
                 user.FirstName = input.FirstName;
                 user.LastName = input.LastName;
+                user.Address = input.Address;
+                user.Phone = input.Phone;
                 var result = await _userManager.CreateAsync(user, input.Password);
                 if (result.Succeeded)
                 {

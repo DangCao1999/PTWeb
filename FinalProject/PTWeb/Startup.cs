@@ -24,7 +24,7 @@ namespace PTWeb
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<Models.IdentityDBContext>(options =>  //WebContext là tên DbContext được tạo ra mặc định tên đặt tùy theo tên DB
+            services.AddDbContext<Models.PTWebContext>(options =>  //WebContext là tên DbContext được tạo ra mặc định tên đặt tùy theo tên DB
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
             services.AddSession();

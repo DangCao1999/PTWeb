@@ -1,4 +1,5 @@
 ﻿
+
 <div class="content_section">
 
     <h2>Your Products</h2>
@@ -21,7 +22,7 @@
     </table>
 
     <div style="display: flex; justify-content: flex-end;">
-        <button onclick="checkOut()">Check out</button>
+        <a href="@Url.Action("CheckOut","Cart")">Check out</a>
     </div>
 
 </div>
@@ -47,16 +48,16 @@
                         console.log(product);
                         let tr = document.createElement("tr");
                         tr.innerHTML = `<td>${product.Name}</td>
-                                            <td><img src="${product.ImageUrl}" width="60" /> </td>
-                                            <td>${product.Price}.00</td>
-                                            <td>${product.PromotionPrice}.00</td>
-                                            <td>
+                                                    <td><img src="${product.ImageUrl}" width="60" /> </td>
+                                                    <td>${product.Price}.00</td>
+                                                    <td>${product.PromotionPrice}.00</td>
+                                                    <td>
 
-                                                <input id="input-${product.Id}" type="number" value="${e.Quantity}" min="1" max="${product.Quantity}">
-                                            </td>
-                                            <td>${product.Price}.00</td>
-                                            <td><button class="button-remove" onclick="remove(${product.Id})" data-id="${product.Id}">Remove</button></td>
-                                            <td><button class="button-update" onclick="update(${product.Id})" data-id="${product.Id}">Update</button></td>`;
+                                                        <input id="input-${product.Id}" type="number" value="${e.Quantity}" min="1" max="${product.Quantity}">
+                                                    </td>
+                                                    <td>${product.Price}.00</td>
+                                                    <td><button class="button-remove" onclick="remove(${product.Id})" data-id="${product.Id}">Remove</button></td>
+                                                    <td><button class="button-update" onclick="update(${product.Id})" data-id="${product.Id}">Update</button></td>`;
                         tbody.appendChild(tr);
                     })
                 }
@@ -133,9 +134,15 @@
         }
 
         //-------------Checkout------------
-        function checkOut() {
-            
-        }
+        //function checkOut() {
+        //    jQuery.ajax({
+        //        url: "/Cart/CheckOut",
+        //        method: "POST",
+        //        success: function (rs) {
+        //            console.log(rs);
+        //        }
+        //    })
+        //}
 
         jQuery(document).ready(function () {
             getCart();

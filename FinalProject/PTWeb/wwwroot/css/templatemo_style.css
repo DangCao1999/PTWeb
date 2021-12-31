@@ -478,3 +478,8 @@ h3 {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
+
+.form-group {
+	display: flex;
+	justify-content: space-between;
+}

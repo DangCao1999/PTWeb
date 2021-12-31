@@ -8,13 +8,21 @@ namespace PTWeb.ViewModels
 {
     public class InputRegister
     {
+        [Required]
         [Display(Name = "FirstName")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(Name = "LastName")]
         public string LastName { get; set; }
 
+        [Required]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
 
+        [Required]
+        [Display(Name = "Address")]
+        public string Address { get; set; }
 
         [Required]
         [EmailAddress]

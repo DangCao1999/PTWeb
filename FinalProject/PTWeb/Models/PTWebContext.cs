@@ -8,13 +8,13 @@ using PTWeb.Areas.Identity.Data;
 
 namespace PTWeb.Models
 {
-    public partial class IdentityDBContext : IdentityDbContext
+    public class PTWebContext : IdentityDbContext
     {
-        public IdentityDBContext()
+        public PTWebContext()
         {
         }
 
-        public IdentityDBContext(DbContextOptions<IdentityDBContext> options)
+        public PTWebContext(DbContextOptions<PTWebContext> options)
             : base(options)
         {
         }

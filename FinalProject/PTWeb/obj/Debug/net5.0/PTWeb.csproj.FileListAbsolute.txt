@@ -1791,6 +1791,7 @@ C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Sha
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Shared\_MainLayout.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Shared\_MyLoginPartial.cshtml.g.cs
+C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\UserInfo\Index.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.RazorTargetAssemblyInfo.cache
@@ -1802,3 +1803,5 @@ C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\ref\PTWeb.dll
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.pdb
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.genruntimeconfig.cache
 C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Cart\CheckOut.cshtml.g.cs
+C:\Users\PC\Desktop\PTWebHoc\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\UserInfo\History.cshtml.g.cs

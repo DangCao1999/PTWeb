@@ -8,7 +8,7 @@ using PTWeb.Models;
 
 namespace PTWeb.Migrations
 {
-    [DbContext(typeof(IdentityDBContext))]
+    [DbContext(typeof(PTWebContext))]
     partial class PTWebContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -250,8 +250,8 @@ namespace PTWeb.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<byte[]>("OrderDate")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
@@ -265,15 +265,12 @@ namespace PTWeb.Migrations
                     b.Property<long>("Total")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -345,10 +342,16 @@ namespace PTWeb.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasDiscriminator().HasValue("User");
@@ -407,11 +410,11 @@ namespace PTWeb.Migrations
 
             modelBuilder.Entity("PTWeb.Models.Order", b =>
                 {
-                    b.HasOne("PTWeb.Models.User", "User")
+                    b.HasOne("PTWeb.Models.User", "Users")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId1");
+                        .HasForeignKey("UserId");
 
-                    b.Navigation("User");
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PTWeb.Models.OrderDetail", b =>

@@ -14,14 +14,14 @@ namespace PTWeb.Models
         }
 
         public int Id { get; set; }
-        public byte[] OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
         public long Total { get; set; }
         public string Status { get; set; }
         public string ShipAddress { get; set; }
         public string Phone { get; set; }
         
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public string UserId { get; set; }
+        public User Users { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
     }
 }
