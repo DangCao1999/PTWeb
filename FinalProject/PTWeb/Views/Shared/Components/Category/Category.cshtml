@@ -10,7 +10,8 @@
 
     @foreach (var item in Model)
     {
-        <li><a href="#">@item.Name</a></li>
+        string categoryString = "Category/"+@item.Id.ToString();
+        <li><a href="Product/Category/@item.Id">@item.Name</a></li>
     }
 </ul>
 

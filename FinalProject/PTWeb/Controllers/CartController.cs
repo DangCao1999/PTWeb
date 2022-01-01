@@ -139,6 +139,7 @@ namespace PTWeb.Controllers
                 OrderDetails = orderDetails,
                 UserId = user.Id,
                 ShipAddress = user.Address,
+                Status = "Shipping",
                 Phone = user.Phone,
                 Total = orderDetails.Sum(e => e.Price),
             };

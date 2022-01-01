@@ -1,0 +1,36 @@
+﻿@model Order
+<div class="content_section">
+
+    <h2>Your Order</h2>
+    <table id="customers">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Image</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.OrderDetails.Count > 0)
+            {
+                @foreach (var orderDetail in Model.OrderDetails)
+                {
+                    <tr>
+                        <td>@orderDetail.Product.Name</td>
+                        <td><img src="@orderDetail.Product.ImageUrl" width="60" /></td>
+                        <td style="text-align:center;">@orderDetail.Quantity</td>
+                        <td>@orderDetail.Price</td>
+                    </tr>
+                }
+            }
+
+            <tr>
+                <td colspan="2"><h3 style="text-align: right;">Total money:</h3></td>
+                <td></td>
+                <td><b>@Model.Total</b></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

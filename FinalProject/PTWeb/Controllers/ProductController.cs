@@ -17,12 +17,17 @@ namespace PTWeb.Controllers
             this._context = pTWebContext;
         }
 
-        [Route("product/{id?}")]
         public IActionResult Index(int? id)
         {
-            Console.WriteLine(id);
+            //Console.WriteLine(id);
             Product product = this._context.Products.Where(p => p.Id == id).First();
             return View(product);
+        }
+
+        public IActionResult Category(int? id)
+        {
+            List<Product> products = this._context.Products.Where(p => p.CategoryId == id).ToList();
+            return View(products);
         }
     }
 }
