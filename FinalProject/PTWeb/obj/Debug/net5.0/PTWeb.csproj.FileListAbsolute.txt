@@ -2261,6 +2261,7 @@ C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.dll
 C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\ref\PTWeb.dll
 C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.pdb
 C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.genruntimeconfig.cache
-C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.csproj.AssemblyReference.cache
 C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\UserInfo\OrderDetail.cshtml.g.cs
 C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Product\Category.cshtml.g.cs
+C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\PTWeb.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\obj\Debug\net5.0\Razor\Views\Product\Search.cshtml.g.cs

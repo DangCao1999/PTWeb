@@ -50,3 +50,22 @@ insert into products values('Coach Dreams Sunset EDP',
 2800000, 5,'https://www.thegioinuochoa.com.vn/uploads/products/2021/12/image/1638960399.6963.png',
 2380000, 2)
 
+insert into products values ('Oceani Di Seta EDP',
+'OCEANI DI SETA là hương thơm mới ra mắt trong năm 2021 của thương hiệu đình đám Salvatore Ferragamo. Thuộc bộ sưu tập Storie di Seta - bộ sưu tập mang đến trải nghiệm đầy sức gợi hình, sáng tạo và đa khía cạnh, thu hút mọi giác quan trong khi những hương thơm đưa chúng ta đến những cảnh quan độc đáo và cảm giác lôi cuốn được lấy cảm hứng từ những sáng tạo từ lụa mang tính biểu tượng của Salvatore Ferragamo.',
+2890000, 20, 'https://www.thegioinuochoa.com.vn/uploads/products/2021/12/image/1639984696.8648.png',
+2312000, 3)
+
+insert into Products values ('Savane Di Seta EDP',
+'SAVANE DI SETA là hương thơm mới ra mắt trong năm 2021 của thương hiệu đình đám Salvatore Ferragamo. Thuộc bộ sưu tập Storie di Seta - bộ sưu tập mang đến trải nghiệm đầy sức gợi hình, sáng tạo và đa khía cạnh, thu hút mọi giác quan trong khi những hương thơm đưa chúng ta đến những cảnh quan độc đáo và cảm giác lôi cuốn được lấy cảm hứng từ những sáng tạo từ lụa mang tính biểu tượng của Salvatore Ferragamo.',
+2890000, 20, 'https://www.thegioinuochoa.com.vn/uploads/products/2021/12/image/1639984313.5504.png',
+2312000, 3)
+
+insert into products values ('Giungle Di Seta EDP',
+'GIUNGLE DI SETA là hương thơm mới ra mắt trong năm 2021 của thương hiệu đình đám Salvatore Ferragamo. Thuộc bộ sưu tập Storie di Seta - bộ sưu tập mang đến trải nghiệm đầy sức gợi hình, sáng tạo và đa khía cạnh, thu hút mọi giác quan trong khi những hương thơm đưa chúng ta đến những cảnh quan độc đáo và cảm giác lôi cuốn được lấy cảm hứng từ những sáng tạo từ lụa mang tính biểu tượng của Salvatore Ferragamo.',
+2890000, 20, 'https://www.thegioinuochoa.com.vn/uploads/products/2021/12/image/1639983957.9041.png',
+2312000, 3)
+
+insert into Products values ('Giardini Di Seta EDP',
+'GIARDINI DI SETA là hương thơm mới ra mắt trong năm 2021 của thương hiệu đình đám Salvatore Ferragamo. Thuộc bộ sưu tập Storie di Seta - bộ sưu tập mang đến trải nghiệm đầy sức gợi hình, sáng tạo và đa khía cạnh, thu hút mọi giác quan trong khi những hương thơm đưa chúng ta đến những cảnh quan độc đáo và cảm giác lôi cuốn được lấy cảm hứng từ những sáng tạo từ lụa mang tính biểu tượng của Salvatore Ferragamo.',
+2890000,20, 'https://www.thegioinuochoa.com.vn/uploads/products/2021/12/image/1639983176.7157.png',
+2312000, 3)

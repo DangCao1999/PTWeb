@@ -22,7 +22,7 @@
                         <td>@orderDetail.Product.Name</td>
                         <td><img src="@orderDetail.Product.ImageUrl" width="60" /></td>
                         <td style="text-align:center;">@orderDetail.Quantity</td>
-                        <td>@orderDetail.Price</td>
+                        <td>@String.Format("{0:n0}",@orderDetail.Price)</td>
                     </tr>
                 }
             }
@@ -30,7 +30,7 @@
             <tr>
                 <td colspan="2"><h3 style="text-align: right;">Total money:</h3></td>
                 <td></td>
-                <td><b>@Model.Total</b></td>
+                <td><b> @String.Format("{0:n0}",@Model.Total)</b></td>
             </tr>
 
         </tbody>

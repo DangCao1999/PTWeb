@@ -26,7 +26,18 @@ namespace PTWeb.Controllers
 
         public IActionResult Category(int? id)
         {
+            if(id == -1)
+            {
+                List<Product> products1 = this._context.Products.ToList();
+                return View(products1);
+            }
             List<Product> products = this._context.Products.Where(p => p.CategoryId == id).ToList();
+            return View(products);
+        }
+
+        public IActionResult Search(string q)
+        {
+            List<Product> products = this._context.Products.Where(p => p.Name.Contains(q)).ToList();
             return View(products);
         }
     }

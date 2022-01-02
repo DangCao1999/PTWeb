@@ -1,1 +1,96 @@
-﻿
+﻿@model PTWeb.ViewModels.InputRegister
+
+<div class="content_section">
+
+    <h2>Register</h2>
+    <form id="form-update">
+        <h4>Create a new account.</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div style="display: flex; justify-content:space-around; flex-direction: column; width: 400px;">
+
+            <div style="display: flex; justify-content:space-between; margin-bottom: 10px;">
+                <div style="width: 180px;">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" value="@Model.FirstName" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div style="margin-right: 10px;">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" value="@Model.LastName" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="display: flex;margin-bottom: 10px; justify-content:space-between; ">
+                <div style="width: 180px;">
+                    <label asp-for="Phone"></label>
+                    <input asp-for="Phone" class="form-control" value="@Model.Phone" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+                <div style="margin-right: 10px;">
+                    <label asp-for="Address"></label>
+                    <input asp-for="Address" class="form-control" value="@Model.Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div style="width: 180px;">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" value="@Model.Email" disabled />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <button style="margin-top: 10px;" class="button_01" type="submit">Update</button>
+    </form>
+</div>
+
+@section Scripts{
+<script>
+
+    jQuery("#form-update").submit(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
+    var form = jQuery(this);
+
+    jQuery.ajax({
+        type: "POST",
+        url: "/UserInfo/OnUpdate",
+        data: form.serialize(), // serializes the form's elements.
+        success: function () {
+            Swal.fire(
+            'Update Info!',
+            'Your info has been updated.',
+            'success'
+            );
+        },
+        error: function () {
+            Swal.fire(
+            'Update Info!',
+            'Some thing went wrong.',
+            'error'
+            );
+        }
+        });
+    });
+
+
+
+                  //function submitUpdate(){
+                  //   // avoid to execute the actual submit of the form.
+                  //    var formData = new FormData();
+                  //    formData.append("firstName", $("#txtFirstName").val());
+                  //    formData.append("lastName", $("#txtLastName").val());
+                  //    formData.append("phone", $("#txtPhone").val());
+                  //    formData.append("address", $("#txtAddress").val());
+                  //  $.ajax({
+                  //         type: "POST",
+                  //         url: "/UserInfo/OnUpdate",
+                  //         data: formData, // serializes the form's elements.
+                  //         success: function(data)
+                  //         {
+                  //             alert(data);
+                  //         }
+                  //       });
+                  //}
+</script>
+}

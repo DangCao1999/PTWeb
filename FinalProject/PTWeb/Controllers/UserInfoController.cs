@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PTWeb.Models;
+using PTWeb.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,18 @@ namespace PTWeb.Controllers
             _context = context;
             _userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            User user = await this._userManager.GetUserAsync(this.User);
+            InputRegister input = new InputRegister()
+            {
+                Email = user.Email,
+                Phone = user.Phone,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Address = user.Address,
+            };
+            return View(input);
         }
 
         public IActionResult UpdateUser()
@@ -48,6 +58,18 @@ namespace PTWeb.Controllers
             order.OrderDetails = orderDetails;
 
             return View(order);
+        }
+
+        public async Task<IActionResult> OnUpdate (InputRegister input)
+        {
+            User user = await this._userManager.GetUserAsync(this.User);
+            user.Address = input.Address;
+            user.Phone = input.Phone;
+            user.FirstName = input.FirstName;
+            user.LastName = input.LastName;
+            _context.Users.Update(user);
+            _context.SaveChanges();
+            return Ok();
         }
     }
 }

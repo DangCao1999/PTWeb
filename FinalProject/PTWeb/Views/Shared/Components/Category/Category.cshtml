@@ -11,7 +11,7 @@
     @foreach (var item in Model)
     {
         string categoryString = "Category/"+@item.Id.ToString();
-        <li><a href="Product/Category/@item.Id">@item.Name</a></li>
+        <li><a href=@Url.Action("Category", "Product", new{Id= @item.Id})>@item.Name</a></li>
     }
 </ul>
 

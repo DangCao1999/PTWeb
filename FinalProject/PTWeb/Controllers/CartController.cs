@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -69,6 +70,7 @@ namespace PTWeb.Controllers
             return Ok(obj);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddToCart(int id, int quantity = 1)
         {
@@ -80,7 +82,7 @@ namespace PTWeb.Controllers
             var cartDetail = cart.Find(p => p.Product.Id == id);
             if (cartDetail != null)
             {
-                cartDetail.Quantity++;
+                cartDetail.Quantity += quantity;
             }
             else
             {

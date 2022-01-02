@@ -1,6 +1,7 @@
 ﻿@model PTWeb.Models.User
 
-<h1>Hello @Model.Email</h1>
+<h1 style="margin-bottom:0px;">Hello </h1>
+<h2><a href="/UserInfo/Index">@Model.Email</a></h2>
 <div style="display: flex; justify-content: space-evenly;">
     <a href="@Url.Action("History","UserInfo")">History</a>
     <a id="cart_url" href="@Url.Action("Index","Cart")">Cart</a>

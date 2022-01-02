@@ -12,7 +12,6 @@
                 <th scope="col">Price</th>
                 <th scope="col">Promation Price</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Sub Total</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -47,15 +46,16 @@
                         let product = e["Product"];
                         console.log(product);
                         let tr = document.createElement("tr");
+                        let price = new Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.Price);
+                        let promotionPrice = new Intl.NumberFormat('vn-VN', { style: 'currency', currency: 'VND' }).format(product.PromotionPrice);
                         tr.innerHTML = `<td>${product.Name}</td>
                                                     <td><img src="${product.ImageUrl}" width="60" /> </td>
-                                                    <td>${product.Price}.00</td>
-                                                    <td>${product.PromotionPrice}.00</td>
+                                                    <td>${price}</td>
+                                                    <td>${promotionPrice}</td>
                                                     <td>
 
                                                         <input id="input-${product.Id}" type="number" value="${e.Quantity}" min="1" max="${product.Quantity}">
                                                     </td>
-                                                    <td>${product.Price}.00</td>
                                                     <td><button class="button-remove" onclick="remove(${product.Id})" data-id="${product.Id}">Remove</button></td>
                                                     <td><button class="button-update" onclick="update(${product.Id})" data-id="${product.Id}">Update</button></td>`;
                         tbody.appendChild(tr);
@@ -91,8 +91,8 @@
                         error: function () {
                             Swal.fire(
                                 'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
+                                'Some thing went wrong!',
+                                'Error'
                             )
                         }
                     })

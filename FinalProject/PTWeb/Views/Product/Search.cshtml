@@ -1,38 +1,46 @@
 ﻿@model List<Product>
 
-
 <h2>Our Products</h2>
 
-@foreach (var item in @Model.Select((value, i) => new { value, i }))
+@if (@Model.Count > 0)
 {
-    Product product = item.value;
-    int index = item.i;
-    @if (++index % 3 == 0)
+
+
+    @foreach (var item in @Model.Select((value, i) => new { value, i }))
     {
-        <div class="product_box">
-            <h3 class="name">@product.Name</h3>
+        Product product = item.value;
+        int index = item.i;
+        @if (++index % 3 == 0)
+        {
+            <div class="product_box">
+                <h3 class="name">@product.Name</h3>
 
-            <div class="image_wrapper"> <a href="http://www.templatemo.com/page/3" target="_parent"><img src="@product.ImageUrl" alt="product 4" /></a> </div>
+                <div class="image_wrapper"> <a href="http://www.templatemo.com/page/3" target="_parent"><img src="@product.ImageUrl" alt="product 4" /></a> </div>
 
-            <p class="price">Price: @String.Format("{0:n0}",product.Price)</p>
-            <a href="/product/index/@product.Id">Detail</a> | <a class="btn-buy" data-id="@product.Id" href="#">Buy Now</a>
-        </div>
-        <div class="cleaner"></div>
+                <p class="price">Price: @String.Format("{0:n0}",product.Price)</p>
+                <a href="/product/index/@product.Id">Detail</a> | <a class="btn-buy" data-id="@product.Id" href="#">Buy Now</a>
+            </div>
+            <div class="cleaner"></div>
+        }
+        else
+        {
+            <div class="product_box margin_r35">
+
+                <h3 class="name">@product.Name</h3>
+
+                <div class="image_wrapper"> <a href="http://www.templatemo.com/page/1" target="_parent"><img src="@product.ImageUrl" alt="product 2" /></a> </div>
+
+                <p class="price">Price: @String.Format("{0:n0}",product.Price)</p>
+                <a href="/product/index/@product.Id">Detail</a> | <a class="btn-buy" data-id="@product.Id" href="#">Buy Now</a>
+
+            </div>
+        }
     }
-    else
-    {
-        <div class="product_box margin_r35">
-
-            <h3 class="name">@product.Name</h3>
-
-            <div class="image_wrapper"> <a href="http://www.templatemo.com/page/1" target="_parent"><img src="@product.ImageUrl" alt="product 2" /></a> </div>
-
-            <p class="price">Price: @String.Format("{0:n0}",product.Price)</p>
-            <a href="/product/index/@product.Id">Detail</a> | <a class="btn-buy" data-id="@product.Id" href="#">Buy Now</a>
-
-        </div>
-    }
-};
+}
+else
+{
+    <h2>Not Found</h2>
+}
 
 @section Scripts {
 <script>
@@ -85,4 +93,3 @@
                 });
 </script>
 }
-

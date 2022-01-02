@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
 }
 @model Product;
@@ -9,8 +8,8 @@
         <img src="@Model.ImageUrl" alt="product 2" />
     </div>
     <div style="display: flex; flex-direction: column; justify-content: space-between;">
-        <p class="price">Price: @Model.Price</p>
-        <p class="price">Promotion Price: @Model.PromotionPrice</p>
+        <p class="price">Price: <del>@String.Format("{0:n0}",@Model.Price)</del> </p>
+        <p class="price">Promotion Price: @String.Format("{0:n0}",@Model.PromotionPrice)</p>
         <div>
             <input id="input-@Model.Id" type="number" value="1" min="1" max="@Model.Quantity"> <button id="btn-add-cart">Add to cart</button>
         </div>
@@ -21,42 +20,56 @@
 </div>
 
 @section Scripts {
-    <script>
+<script>
 
 
-        jQuery(document).ready(function () {
-            jQuery("#btn-add-cart").click(function () {
-                            console.log( jQuery("#input-@Model.Id").val());
-                            jQuery.ajax({
-                                method: "POST",
-                                url: "/Cart/AddToCart",
-                                data: {
-                                    id: @Model.Id,
-                                    quantity: jQuery("#input-@Model.Id").val()
-                                },
-                                success: function (data) {
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'Add new item success',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    updateNumberCart();
-                                },
-                                error: function () {
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'error',
-                                        title: 'Add new item failed',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-                                }
-                            })
+    jQuery(document).ready(function () {
+        jQuery("#btn-add-cart").click(function () {
+                        console.log( jQuery("#input-@Model.Id").val());
+                        jQuery.ajax({
+                            method: "POST",
+                            url: "/Cart/AddToCart",
+                            data: {
+                                id: @Model.Id,
+                                quantity: jQuery("#input-@Model.Id").val()
+                            },
+                            success: function (data) {
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: 'Add new item success',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                updateNumberCart();
+                            },
+                            error: function (data) {
+                              if(data.status == 401)
+                            {
+                                Swal.fire({
+                                position: 'top-end',
+                                icon: 'warning',
+                                title: 'Add new item failed',
+                                text: "You are not logged in!",
+                                showConfirmButton: false,
+                                timer: 2500
+                                })
+                            }
+                            else{
+                                Swal.fire({
+                                    position: 'top-end',
+                                    icon: 'error',
+                                    title: 'Add new item failed',
+                                    text: 'Something went wrong!',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                            }
+                            }
                         })
-                    });
-    </script>
+                    })
+                });
+</script>
 }
 
 
