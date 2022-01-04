@@ -16,5 +16,6 @@
     <Controller_SelectedScaffolderCategoryPath>root/Common/MVC/Controller</Controller_SelectedScaffolderCategoryPath>
     <WebStackScaffolding_ControllerDialogWidth>650</WebStackScaffolding_ControllerDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>PTWeb.Models.PTWebContext</WebStackScaffolding_DbContextTypeFullName>
+    <NameOfLastUsedPublishProfile>C:\Users\user\Desktop\PTWeb\FinalProject\PTWeb\Properties\PublishProfiles\Default Settings1.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

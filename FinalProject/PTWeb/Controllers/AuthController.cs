@@ -38,12 +38,19 @@ namespace PTWeb.Controllers
         public string ReturnUrl { get; set; }
 
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
+       
 
 
         [Route("~/Auth/Index")]
         public IActionResult Index()
         {
             return View("~/Views/Register/Index.cshtml");
+        }
+
+        public async Task<ActionResult> LogOut()
+        {
+            await this._signInManager.SignOutAsync();
+            return Redirect("/Home/Index");
         }
 
         [HttpPost]
